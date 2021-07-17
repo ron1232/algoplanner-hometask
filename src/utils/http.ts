@@ -5,8 +5,3 @@ export default class http {
     return { res, data };
   };
 }
-
-export interface Http {
-  res: object;
-  data: object
-}

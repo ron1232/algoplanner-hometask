@@ -6,4 +6,5 @@ export interface File {
     length?: number;
     height?: number;
     width?: number;
+    pages?: number;
 }
