@@ -4,17 +4,23 @@ import { File } from './utils/file';
 import Container from '@material-ui/core/Container';
 import FileComponent from './components/File';
 import Error from './components/Error';
+import { ApiUrl } from './config';
 
 const App: React.FC = (): ReactElement => {
   const [files, setFiles] = useState<Array<File>>([]);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    const fetchData = async () => {
+    /**
+     *
+     * Function that fetches all files from our api
+     *
+     * @returns void
+     *
+     */
+    const fetchData = async (): Promise<void> => {
       try {
-        const { data, res } = await http.get(
-          'https://mighty-sierra-05836.herokuapp.com/files'
-        );
+        const { data, res } = await http.get(`${ApiUrl}/files`);
 
         if (res.ok) {
           return setFiles(data.files);
@@ -22,20 +28,21 @@ const App: React.FC = (): ReactElement => {
 
         setError('Response was not okay');
       } catch (error) {
+        // Error Handleling
         console.error(error);
         setError('Response was not okay');
       }
     };
 
-    fetchData();
+    fetchData(); // calls the function
   }, []);
 
   return (
     <Container maxWidth='sm'>
       {error ? (
-        <Error error={error} />
+        <Error error={error} /> // Error Handling
       ) : (
-        files.map((file) => <FileComponent file={file} key={file.name} />)
+        files.map((file) => <FileComponent file={file} key={file.name} />) // if error is falsy, then map over files array
       )}
     </Container>
   );

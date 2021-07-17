@@ -1,3 +1,7 @@
+/**
+ * 
+ * ModalInterface Interface
+ */
 export interface ModalInterface {
     open: boolean;
     handleClose: any;

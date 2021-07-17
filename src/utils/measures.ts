@@ -1,3 +1,7 @@
+/**
+ * 
+ * Measures Interface
+ */
 export interface Measures {
     pages?: number;
     length?: number;

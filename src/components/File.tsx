@@ -10,23 +10,28 @@ import SimpleModal from './Modal';
 import { useState } from 'react';
 
 const FileComponent: React.FC<{ file: File }> = ({ file }): ReactElement => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false); // handles the opening and closing of the modal
 
   const handleOpen = () => {
+    // sets the modal to be displayed
     setOpen(true);
   };
 
   const handleClose = () => {
+    // sets the modal to be hidden
     setOpen(false);
   };
 
-  const classes = useStyles();
+  const classes = useStyles(); // gets the styles of this component
   return (
-    <React.Fragment key={file.name}>
+    <React.Fragment key={file?.name}>
       <Paper className={classes.paper} onClick={handleOpen}>
         <Grid container spacing={2}>
           <Grid className={classes.iconContainer} item>
-            <PictureComponent classes={classes} mime={file.mime} />
+            <PictureComponent /* Picture Handling - Chooses which picture to display */
+              classes={classes}
+              mime={file?.mime}
+            />
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction='column'>
@@ -37,7 +42,7 @@ const FileComponent: React.FC<{ file: File }> = ({ file }): ReactElement => {
               </Grid>
               <Grid>
                 <Typography variant='body2'>
-                  <MeasuresComponent
+                  <MeasuresComponent /* Measures Handling - Chooses which measure to display */
                     pages={file?.pages}
                     length={file?.length}
                     height={file?.height}
@@ -54,7 +59,7 @@ const FileComponent: React.FC<{ file: File }> = ({ file }): ReactElement => {
           </Grid>
         </Grid>
       </Paper>
-      <SimpleModal
+      <SimpleModal /* Modal */
         handleClose={handleClose}
         open={open}
         name={file?.name}

@@ -1,3 +1,7 @@
+/**
+ * 
+ * File Interface
+ */
 export interface File {
     mime: string;
     size: number;

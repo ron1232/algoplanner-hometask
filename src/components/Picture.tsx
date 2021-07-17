@@ -11,12 +11,15 @@ const PictureComponent: React.FC<Picture> = ({
   return (
     <>
       {mime.toLowerCase().includes('video') && (
+        // if the mime type is a video then display the video icon
         <VideocamIcon className={classes.icon} />
       )}
       {mime.toLowerCase().includes('image') && (
+        // if the mime type is an image then display the video icon
         <ImageIcon className={classes.icon} />
       )}
       {mime.toLowerCase().includes('pdf') && (
+        // if the mime type is a pdf document then display the video icon
         <PictureAsPdfIcon className={classes.icon} />
       )}
     </>

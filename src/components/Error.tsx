@@ -13,11 +13,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Error: React.FC<{ error: string }> = ({ error }) => {
-  const classes = useStyles();
+  const classes = useStyles(); // gets the styles of this component
 
   return (
     <div className={classes.root}>
-      <Alert severity='error'>{error}</Alert>
+      <Alert
+        /* Displays the error */
+        severity='error'
+      >
+        {error}
+      </Alert>
     </div>
   );
 };

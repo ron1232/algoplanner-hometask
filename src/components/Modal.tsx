@@ -8,6 +8,7 @@ import PopupComponent from './Popup';
 import { ModalInterface } from '../utils/modal';
 
 function getModalStyle(): React.CSSProperties {
+  // CSSProperties of our modal
   const top = 50;
   const left = 50;
 
@@ -15,7 +16,7 @@ function getModalStyle(): React.CSSProperties {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
-  };
+  }; // places the modal exactly in the middle of the screen
 }
 
 const SimpleModal: React.FC<ModalInterface> = ({
@@ -24,9 +25,9 @@ const SimpleModal: React.FC<ModalInterface> = ({
   name,
   mime,
 }): ReactElement => {
-  const classes = useStyles();
-  const [modalStyle] = useState(getModalStyle);
-  const content = `${ApiUrl}/${name}`;
+  const classes = useStyles(); // gets the styles of this component
+  const [modalStyle] = useState(getModalStyle); // gets the CSSProperties of our modal
+  const content = `${ApiUrl}/${name}`; // uses our api to access given file content
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -35,6 +36,7 @@ const SimpleModal: React.FC<ModalInterface> = ({
           {name}
         </Typography>
         <Typography
+          /* Close Button */
           variant='body2'
           className={classes.closeBtn}
           onClick={handleClose}
@@ -43,15 +45,20 @@ const SimpleModal: React.FC<ModalInterface> = ({
         </Typography>
       </div>
       <div id='simple-modal-description'>
-        <PopupComponent mime={mime} content={content} name={name} />
+        <PopupComponent
+          /* Content Handling */
+          mime={mime}
+          content={content}
+          name={name}
+        />
       </div>
     </div>
   );
 
   return (
     <Modal
-      open={open}
-      onClose={handleClose}
+      open={open} // when open = true display the modal
+      onClose={handleClose} // when a user closes the modal, hide the modal
       aria-labelledby='simple-modal-title'
       aria-describedby='simple-modal-description'
     >
