@@ -1,30 +1,22 @@
 import { ReactElement } from 'react';
 import Iframe from 'react-iframe';
+import { useStyles } from '../styles/popupSyles';
+import { Popup } from '../utils/popup';
 
-const Popup: React.FC<{ mime: string; content: string; name?: string }> = ({
+const PopupComponent: React.FC<Popup> = ({
   mime,
   content,
   name,
 }): ReactElement => {
+  const classes = useStyles();
+
   return (
-    <div
-      style={{
-        height: 400,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <div className={classes.popupContainer}>
       {mime.toLowerCase().includes('image') && (
         <img src={content} alt={name} className='my-photo' />
       )}
       {mime.toLowerCase().includes('video') && (
-        <video
-          style={{ border: '0.5px solid #ccc' }}
-          height='350px'
-          width='100%'
-          controls
-        >
+        <video className={classes.video} height='350px' width='100%' controls>
           <source src={content} type={mime} />
         </video>
       )}
@@ -34,7 +26,7 @@ const Popup: React.FC<{ mime: string; content: string; name?: string }> = ({
           position='relative'
           width='100%'
           height='350px'
-          styles={{ border: 'none' }}
+          className={classes.iframe}
           allowFullScreen
         />
       )}
@@ -42,4 +34,4 @@ const Popup: React.FC<{ mime: string; content: string; name?: string }> = ({
   );
 };
 
-export default Popup;
+export default PopupComponent;

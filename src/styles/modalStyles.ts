@@ -12,4 +12,13 @@ export const useStyles = makeStyles((theme) => ({
         width: '80%',
       }
     },
+    popup: {
+      borderBottom: '1px solid gray',
+      paddingBottom: 10,
+      display: 'flex',
+    },
+    closeBtn: {
+      cursor: 'pointer',
+      marginLeft: 'auto'
+    }
   }));

@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { ReactElement } from 'react';
 import Typography from '@material-ui/core/Typography';
-import Popup from './Popup';
-import { ApiUrl } from '../config.json';
+import { ApiUrl } from '../config';
+import PopupComponent from './Popup';
 
 function getModalStyle(): React.CSSProperties {
   const top = 50;
@@ -29,27 +29,20 @@ const SimpleModal: React.FC<{
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div
-        id='simple-modal-title'
-        style={{
-          borderBottom: '1px solid gray',
-          paddingBottom: 10,
-          display: 'flex',
-        }}
-      >
+      <div className={classes.popup} id='simple-modal-title'>
         <Typography variant='body2' style={{ fontWeight: 700 }}>
           {name}
         </Typography>
         <Typography
           variant='body2'
-          style={{ cursor: 'pointer', marginLeft: 'auto' }}
+          className={classes.closeBtn}
           onClick={handleClose}
         >
           <span>✕</span>
         </Typography>
       </div>
-      <div id='simple-modal-description' style={{ marginTop: '1rem' }}>
-        <Popup mime={mime} content={content} name={name} />
+      <div id='simple-modal-description'>
+        <PopupComponent mime={mime} content={content} name={name} />
       </div>
     </div>
   );
@@ -57,7 +50,7 @@ const SimpleModal: React.FC<{
   return (
     <Modal
       open={open}
-      onClose={() => handleClose()}
+      onClose={handleClose}
       aria-labelledby='simple-modal-title'
       aria-describedby='simple-modal-description'
     >

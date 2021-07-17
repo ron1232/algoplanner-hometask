@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { File } from '../utils/file';
 import { useStyles } from '../styles/fileStyles';
-import Picture from './Picture';
+import PictureComponent from './Picture';
 import MeasuresComponent from './Measures';
 import SimpleModal from './Modal';
 import { useState } from 'react';
@@ -23,14 +23,10 @@ const FileComponent: React.FC<{ file: File }> = ({ file }): ReactElement => {
   const classes = useStyles();
   return (
     <React.Fragment key={file.name}>
-      <Paper
-        className={classes.paper}
-        onClick={handleOpen}
-        style={{ cursor: 'pointer' }}
-      >
+      <Paper className={classes.paper} onClick={handleOpen}>
         <Grid container spacing={2}>
           <Grid className={classes.iconContainer} item>
-            <Picture classes={classes} mime={file.mime} />
+            <PictureComponent classes={classes} mime={file.mime} />
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction='column'>

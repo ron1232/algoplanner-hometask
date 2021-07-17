@@ -9,7 +9,8 @@ const MeasuresComponent: React.FC<Measures> = ({
 }): ReactElement => {
   return (
     <>
-      {pages && `${pages} pages`}
+      {pages && pages > 1 && `${pages} pages`}
+      {pages && pages === 1 && `${pages} page`}
       {length && `${length} seconds`}
       {width && height && `${width}x${height}px`}
     </>

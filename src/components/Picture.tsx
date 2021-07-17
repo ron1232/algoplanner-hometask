@@ -2,8 +2,9 @@ import { ReactElement } from 'react';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import ImageIcon from '@material-ui/icons/Image';
+import { Picture } from '../utils/picture';
 
-const Picture: React.FC<{ mime: string; classes: any }> = ({
+const PictureComponent: React.FC<Picture> = ({
   mime,
   classes,
 }): ReactElement => {
@@ -22,4 +23,4 @@ const Picture: React.FC<{ mime: string; classes: any }> = ({
   );
 };
 
-export default Picture;
+export default PictureComponent;

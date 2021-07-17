@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(1.5),
       margin: 20,
       maxWidth: 500,
+      cursor: 'pointer'
     },
     iconContainer: {
       display: 'flex',
