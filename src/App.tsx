@@ -3,6 +3,7 @@ import http from './utils/http';
 import { File } from './utils/file';
 import Container from '@material-ui/core/Container';
 import FileComponent from './components/File';
+import Error from './components/Error';
 
 const App: React.FC = (): ReactElement => {
   const [files, setFiles] = useState<Array<File>>([]);
@@ -32,9 +33,7 @@ const App: React.FC = (): ReactElement => {
   return (
     <Container maxWidth='sm'>
       {error ? (
-        <div>
-          <span>{error}</span>
-        </div>
+        <Error error={error} />
       ) : (
         files.map((file) => <FileComponent file={file} key={file.name} />)
       )}

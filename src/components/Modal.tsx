@@ -5,6 +5,7 @@ import { ReactElement } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { ApiUrl } from '../config';
 import PopupComponent from './Popup';
+import { ModalInterface } from '../utils/modal';
 
 function getModalStyle(): React.CSSProperties {
   const top = 50;
@@ -17,12 +18,12 @@ function getModalStyle(): React.CSSProperties {
   };
 }
 
-const SimpleModal: React.FC<{
-  open: boolean;
-  handleClose: any;
-  name: string;
-  mime: string;
-}> = ({ open, handleClose, name, mime }): ReactElement => {
+const SimpleModal: React.FC<ModalInterface> = ({
+  open,
+  handleClose,
+  name,
+  mime,
+}): ReactElement => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const content = `${ApiUrl}/${name}`;
