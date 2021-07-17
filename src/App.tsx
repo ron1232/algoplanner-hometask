@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import http from './utils/http';
 import { File } from './utils/file';
 import Container from '@material-ui/core/Container';
-import FileComponent from './components/FileComponent';
+import FileComponent from './components/File';
 
 const App: React.FC = (): ReactElement => {
   const [files, setFiles] = useState<Array<File>>([]);
@@ -16,8 +16,6 @@ const App: React.FC = (): ReactElement => {
         );
 
         if (res.ok) {
-          console.log(data.files);
-
           return setFiles(data.files);
         }
 
