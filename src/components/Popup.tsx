@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import Iframe from 'react-iframe';
 import { useStyles } from '../styles/popupSyles';
 import { Popup } from '../utils/popup';
 
@@ -24,13 +23,11 @@ const PopupComponent: React.FC<Popup> = ({
       )}
       {mime.toLowerCase().includes('pdf') && (
         /* If the mimetype is a video => display the pdf document inside an iframe */
-        <Iframe
-          url={content}
-          position='relative'
+        <embed
+          src={content}
+          type='application/pdf'
           width='100%'
-          height='350px'
-          className={classes.iframe}
-          allowFullScreen
+          height='400px'
         />
       )}
     </div>
