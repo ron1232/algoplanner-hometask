@@ -12,5 +12,8 @@ export const useStyles = makeStyles((theme) => ({
     },
     iframe: {
         border: 'none'
+    },
+    p: {
+        textAlign: 'center',
     }
   }));

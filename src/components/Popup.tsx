@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
 import { useStyles } from '../styles/popupSyles';
 import { Popup } from '../utils/popup';
+import Typography from '@material-ui/core/Typography';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 const PopupComponent: React.FC<Popup> = ({
   mime,
@@ -22,13 +24,24 @@ const PopupComponent: React.FC<Popup> = ({
         </video>
       )}
       {mime.toLowerCase().includes('pdf') && (
-        /* If the mimetype is a video => display the pdf document inside an iframe */
-        <embed
-          src={content}
+        /* If the mimetype is a pdf => display the pdf document inside an object */
+        <object
+          data={content}
           type='application/pdf'
           width='100%'
           height='400px'
-        />
+        >
+          <Typography variant='body2' className={classes.p}>
+            Your browser can't display the pdf{' '}
+            <SentimentVeryDissatisfiedIcon style={{ fontSize: '15px' }} />
+            <br />
+            Here's a link instead:
+            <br />
+            <a href={content} target='_blank' rel='noreferrer'>
+              {name}
+            </a>
+          </Typography>
+        </object>
       )}
     </div>
   );
