@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { ReactElement } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useEffect } from 'react';
-import Iframe from 'react-iframe';
+import Popup from './Popup';
+import { ApiUrl } from '../config.json';
 
 function getModalStyle(): React.CSSProperties {
   const top = 50;
@@ -24,14 +24,8 @@ const SimpleModal: React.FC<{
   mime: string;
 }> = ({ open, handleClose, name, mime }): ReactElement => {
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [content, setContent] = useState<any>();
-
-  useEffect(() => {
-    if (open) {
-      setContent(`https://mighty-sierra-05836.herokuapp.com/${name}`);
-    }
-  }, [open, name]);
+  const [modalStyle] = useState(getModalStyle);
+  const content = `${ApiUrl}/${name}`;
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -55,18 +49,7 @@ const SimpleModal: React.FC<{
         </Typography>
       </div>
       <div id='simple-modal-description' style={{ marginTop: '1rem' }}>
-        {mime.toLowerCase().includes('image') ? (
-          <img src={content} alt={name} className='my-photo' />
-        ) : (
-          <Iframe
-            url={content}
-            position='relative'
-            width='100%'
-            height='500px'
-            styles={{ border: 'none' }}
-            allowFullScreen
-          />
-        )}
+        <Popup mime={mime} content={content} name={name} />
       </div>
     </div>
   );

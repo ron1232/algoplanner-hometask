@@ -52,7 +52,7 @@ const FileComponent: React.FC<{ file: File }> = ({ file }): ReactElement => {
             </Grid>
             <Grid item>
               <Typography variant='subtitle1'>
-                {file?.size?.toLocaleString()} KB
+                {file?.size?.toLocaleString()}kB
               </Typography>
             </Grid>
           </Grid>
@@ -62,7 +62,7 @@ const FileComponent: React.FC<{ file: File }> = ({ file }): ReactElement => {
         handleClose={handleClose}
         open={open}
         name={file?.name}
-        mime={file.mime}
+        mime={file?.mime}
       />
     </React.Fragment>
   );
